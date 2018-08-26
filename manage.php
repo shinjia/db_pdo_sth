@@ -350,7 +350,7 @@ HEREDOC;
    
    
    default :
-        $html = '<p><br><br><br>Welcome...資料管理系統<br><br><br><br><br><br></p>';
+        $html = '<p><br><br><br>Welcome...資料管理系統<br><br><br><br><br></p>';
      
 }
 
