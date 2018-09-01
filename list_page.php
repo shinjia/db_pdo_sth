@@ -10,15 +10,7 @@ $numpp = 15;  // 每頁的筆數
 // 連接資料庫
 $pdo = db_open(); 
 
-// 取得分頁所需之資訊 (總筆數、總頁數、擷取記錄之起始位置)
-$sqlstr = "SELECT count(*) as total_rec FROM person ";
-$sth = $pdo->query($sqlstr);
-if($row = $sth->fetch(PDO::FETCH_ASSOC))
-{
-   $total_rec = $row["total_rec"];
-}
-$total_page = ceil($total_rec / $numpp);  // 計算總頁數
-$tmp_start = ($page-1) * $numpp;  // 從第幾筆記錄開始抓取資料
+$tmp_start = ($page-1) * $numpp;  // 擷取記錄之起始位置
 
 // 寫出 SQL 語法
 $sqlstr = "SELECT * FROM person ";
@@ -56,6 +48,17 @@ HEREDOC;
 }
 
 // ------ 分頁處理開始 -------------------------------------
+// 
+// 取得分頁所需之資訊 (總筆數、總頁數、擷取記錄之起始位置)
+$sqlstr = "SELECT count(*) as total_rec FROM person ";
+$sth = $pdo->query($sqlstr);
+if($row = $sth->fetch(PDO::FETCH_ASSOC))
+{
+   $total_rec = $row["total_rec"];
+}
+$total_page = ceil($total_rec / $numpp);  // 計算總頁數
+
+
 // 處理分頁之超連結：上一頁、下一頁、第一首、最後頁
 $lnk_pageprev = '?page=' . (($page==1)?(1):($page-1));
 $lnk_pagenext = '?page=' . (($page==$total_page)?($total_page):($page+1));
