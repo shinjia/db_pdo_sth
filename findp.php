@@ -5,7 +5,7 @@ $html = <<< HEREDOC
 <h2>查詢資料</h2>
 <form action="findp_x.php" method="post">
    <p>查詢名字內含字：<input type="text" name="key"></p>
-   <p><input type="submit" value="新增"></p>
+   <p><input type="submit" value="查詢"></p>
 </form>
 HEREDOC;
 

@@ -13,7 +13,8 @@ $sqlstr .= " WHERE username LIKE ? ";  // 依條件修改
 
 $sth = $pdo->prepare($sqlstr);
 
-$keyword = '%' . $key . '%';  // 注意
+$keyword = '%' . $key . '%';  // 注意 無法搜尋內含 _ 及 % 的資料 (如有需要，使用 ESCAPE 字句)
+
 $sth->bindValue(1, $keyword, PDO::PARAM_STR);
 
 // 執行SQL及處理結果
